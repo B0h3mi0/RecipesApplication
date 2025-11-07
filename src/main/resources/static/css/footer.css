@@ -1,0 +1,77 @@
+/* =============================
+   🌇 FOOTER ESTILIZADO PERSONAL
+============================= */
+.footer-custom {
+    background: linear-gradient(90deg, #ff7f50, #ffb347);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 🔗 Enlaces centrados */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Estilo de los enlaces */
+.footer-links a {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover */
+.footer-links a:hover {
+    color: #fffbe9;
+    transform: translateY(-2px);
+}
+
+/* 🌐 Íconos sociales */
+.social-icons {
+    margin-bottom: 1rem;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 0.6rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #fffbe9;
+    transform: scale(1.1);
+}
+
+/* 📄 Texto inferior */
+.footer-custom p {
+    font-size: 0.9rem;
+    color: #fff8f0;
+    margin-top: 1rem;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .social-icons a {
+        font-size: 1.3rem;
+    }
+}

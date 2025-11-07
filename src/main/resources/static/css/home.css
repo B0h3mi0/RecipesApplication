@@ -1,0 +1,159 @@
+/* 🎨 Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff8f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: #3e2b2b;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 2.5rem;
+}
+
+/* 🔝 Header */
+header {
+    background-color: #ff7f50;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* 🌅 Carrusel */
+.carousel-container {
+    width: 60%;              /* ocupa 90% del ancho de la pantalla */
+    max-width: 1200px;       /* límite máximo */
+    aspect-ratio: 16 / 9;    /* mantiene proporción */
+    margin: 2rem auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide {
+    min-width: 100%;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Botones del carrusel */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 127, 80, 0.8);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(255, 127, 80, 1);
+}
+
+.prev {
+    left: 15px;
+}
+
+.next {
+    right: 15px;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* 📰 Sección Novedades */
+.novedades {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #ffe8d6;
+}
+
+.novedades h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    width: 300px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+    color: #ff7f50;
+    margin-bottom: 0.5rem;
+}
+
+/* 👣 Footer */
+footer {
+    background-color: #ff7f50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+
+/* 🔹 Responsivo */
+@media (max-width: 768px) {
+    .slide img {
+        height: 300px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
+</head>
+<body>
+<footer th:fragment="footer" class="footer-custom">
+    <div class="footer-content">
+        <ul class="footer-links">
+            <li><a th:href="@{/home}">Inicio</a></li>
+            <li><a th:href="@{/registro-usuario}">¿Aún no estás registrado?</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+        </div>
+
+        <p>&copy; 2025 RecetarioApp | Todos los derechos reservados</p>
+    </div>
+</footer>
+</body>
+</html>

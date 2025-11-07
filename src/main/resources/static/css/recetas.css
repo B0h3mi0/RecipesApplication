@@ -1,0 +1,117 @@
+/* =============================
+   🎨 Estilos generales
+============================= */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff8f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 2.4rem;
+    color: #4b2c20;
+}
+
+h2 {
+    text-align: center;
+    margin: 3rem 0 2rem;
+    font-size: 2rem;
+    color: #ff7f50;
+    font-weight: 600;
+}
+
+/* =============================
+   🧁 Tarjetas de productos
+============================= */
+.row {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 1.5rem;
+    background-color: #fffdf8;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #3d2b1f;
+}
+
+.card-footer {
+    background-color: #ffe8d6;
+    border-top: none;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    color: #333;
+    border-radius: 0 0 15px 15px;
+}
+
+/* Precio en color destacado */
+.card-footer p:first-child {
+    color: #d35400;
+    font-weight: bold;
+}
+
+/* =============================
+   🌈 Hover en la card
+============================= */
+.card:hover .card-footer {
+    background-color: #ffd8b6;
+}
+
+/* =============================
+   🦶 Footer (si lo tienes común)
+============================= */
+footer {
+    margin-top: 4rem;
+    background-color: #ff7f50;
+    color: white;
+    text-align: center;
+    padding: 1.2rem 0;
+    font-size: 0.9rem;
+}
+
+/* =============================
+   📱 Responsivo
+============================= */
+@media (max-width: 992px) {
+    .card {
+        margin-bottom: 1.5rem;
+    }
+    h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    .card-body {
+        padding: 1rem;
+    }
+    .card-title {
+        font-size: 1.1rem;
+    }
+}
