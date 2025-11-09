@@ -11,13 +11,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class DetailRecipeResponse {
+    private Integer ingredientId;
     private String ingredientName;
-    private String ingredientAmount;
+    private String amount;
 
     public static DetailRecipeResponse fromEntity(DetailRecipeEntity entity){
         return DetailRecipeResponse.builder()
+                .ingredientId(entity.getIngredient().getId())
                 .ingredientName(entity.getIngredient().getName())
-                .ingredientAmount(entity.getIngredientAmount())
+                .amount(entity.getIngredientAmount())
                 .build();
     }
 }

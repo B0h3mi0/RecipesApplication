@@ -35,6 +35,14 @@ public class RecipeService implements IRecipeService{
     }
 
     @Override
+    public RecipeResponse findById(Long id) {
+        log.info("Obteniendo receta por id: {}",id);
+        RecipeEntity found = repository.findById(id).orElseThrow(()-> new RuntimeException("Receta no encontrada"));
+        log.info("Receta encontrada");
+        return RecipeResponse.fromEntity(found);
+    }
+
+    @Override
     public RecipeResponse create(RecipeRequest request) {
         log.info("Creando receta name: {}",request.getName());
         this.validName(request.getName());

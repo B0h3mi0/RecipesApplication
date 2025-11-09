@@ -5,5 +5,4 @@ import com.example.RecetarioApp.infrastructure.dtos.ingredient.IngredientRespons
 import com.example.RecetarioApp.services.GenericCrud;
 
 public interface IIngredientService extends GenericCrud<IngredientResponse,IngredientRequest,Integer> {
-    IngredientResponse findById(Integer id);
 }
