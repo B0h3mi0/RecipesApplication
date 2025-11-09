@@ -13,17 +13,20 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class RoleServiceImpl {
+public class RoleServiceImpl implements RoleService {
 
 
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
     private static final Logger logger = LoggerFactory.getLogger(RoleServiceImpl.class);
 
     @Override
-    public List<RoleEntity> getAllRole(){
-        logger.info("Buscando todos los rolas - metodo getAllRoles");
-        return roleRepository.findAll();
+    public List<RoleEntity> getAllRoles() {
+        logger.info("Buscando todos los roles - metodo getAllRoles");
+        List<RoleEntity> roles = roleRepository.findAll();
+        logger.info("Roles obtenidos: {}", roles.size());
+        return roles;
     }
+
 
     @Override
     public Optional<RoleEntity> getRoleById(Long id) {

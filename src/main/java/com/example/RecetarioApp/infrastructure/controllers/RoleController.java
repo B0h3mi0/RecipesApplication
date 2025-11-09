@@ -43,19 +43,4 @@ public class RoleController {
                 });
     }
 
-    @PostMapping
-    public ResponseEntity<RoleEntity> createRole(@RequestBody RoleEntity role) {
-        logger.info("Creating a new role with request: {}", role);
-        RoleEntity savedRole = roleService.createRole(role);
-        logger.info("Role successfully created. Role ID: {}", savedRole.getId());
-        return new ResponseEntity<>(savedRole, HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRole(@PathVariable Long id) {
-        logger.info("Deleting role with ID: {}", id);
-        roleService.deleteRoleById(id);
-        logger.info("Role successfully deleted. Role ID: {}", id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }

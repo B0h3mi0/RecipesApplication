@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Usuarios</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div th:replace="~{common/header :: header}"></div>
+
+<div class="container mt-5">
+
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Gestión de Usuarios</h2>
+        <a th:href="@{/users/create}" class="btn btn-primary">Nuevo Usuario</a>
+    </div>
+
+    <!-- Tabla de usuarios -->
+    <table class="table table-striped shadow-sm">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre de Usuario</th>
+            <th>Estado</th>
+            <th>Roles</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="u : ${users}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.username}"></td>
+            <td>
+          <span th:text="${u.active ? 'Activo' : 'Inactivo'}"
+                th:classappend="${u.active} ? 'text-success' : 'text-danger'">
+          </span>
+            </td>
+            <td>
+          <span th:each="role, i : ${u.roles}"
+                th:text="${role.roleName}"
+                th:append="${i.last} ? '' : ', '"></span>
+            </td>
+            <td>
+                <a th:href="@{/users/edit/{id}(id=${u.id})}" class="btn btn-sm btn-warning me-1">Editar</a>
+                <a th:href="@{/users/delete/{id}(id=${u.id})}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+
+        <!-- Caso sin resultados -->
+        <tr th:if="${#lists.isEmpty(users)}">
+            <td colspan="5" class="text-center text-muted">No hay usuarios registrados</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div th:replace="~{common/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
