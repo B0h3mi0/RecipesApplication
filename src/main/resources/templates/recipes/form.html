@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crear Receta</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+<div th:replace="~{common/header :: header}"></div>
+<div class="container py-4">
+    <div class="card shadow">
+        <div class="card-body">
+
+            <h3 class="mb-3">Crear Nueva Receta</h3>
+
+            <form th:action="@{/recipes/save}" th:object="${recipe}" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Ej: Pizza casera">
+                    <div class="text-danger" th:errors="*{name}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tiempo de preparación</label>
+                    <input type="text" th:field="*{preparationTime}" class="form-control" placeholder="Ej: 30 minutos">
+                    <div class="text-danger" th:errors="*{preparationTime}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    <textarea th:field="*{description}" class="form-control" rows="3"></textarea>
+                    <div class="text-danger" th:errors="*{description}"></div>
+                </div>
+
+                <h5 class="mt-4">Ingredientes</h5>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle">
+                        <thead class="table-light">
+                        <tr>
+                            <th>Ingrediente</th>
+                            <th>Cantidad</th>
+                            <th>Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody id="detailsBody">
+
+                        <tr th:each="det, i : *{details}">
+                            <td>
+                                <select th:field="*{details[__${i.index}__].ingredientId}" class="form-select">
+                                    <option th:each="ing : ${ingredients}"
+                                            th:value="${ing.id}"
+                                            th:selected="${ing.id} == ${det.ingredientId}"
+                                            th:text="${ing.name}"></option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" th:field="*{details[__${i.index}__].amount}" class="form-control"/>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="removeRow(this)">Eliminar</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ingredientModal">
+                    + Agregar Ingrediente
+                </button>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Guardar Receta</button>
+                    <a th:href="@{/recipes}" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ingredientModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agregar Ingrediente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <label class="form-label">Ingrediente</label>
+                <select id="modalIngredientSelect" class="form-select">
+                    <option th:each="ing : ${ingredients}"
+                            th:value="${ing.id}"
+                            th:text="${ing.name}">
+                    </option>
+                </select>
+
+                <label class="form-label mt-3">Cantidad</label>
+                <input type="text" id="modalAmount" class="form-control" placeholder="Ej: 150g">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="confirmAddIngredient()" data-bs-dismiss="modal">
+                    Agregar
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    let detailIndex = document.querySelectorAll('#detailsBody tr').length;
+
+    function confirmAddIngredient() {
+        const ingSelect = document.getElementById("modalIngredientSelect");
+        const ingId = ingSelect.value;
+        const ingName = ingSelect.options[ingSelect.selectedIndex].text;
+
+        const amountInput = document.getElementById("modalAmount");
+        const amount = amountInput.value.trim();
+
+        if (!amount) {
+            alert("Debe ingresar una cantidad.");
+            return;
+        }
+
+        let tbody = document.getElementById("detailsBody");
+        let tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>
+                <select class="form-select" name="details[${detailIndex}].ingredientId">
+                    <option value="${ingId}" selected>${ingName}</option>
+                </select>
+            </td>
+            <td><input type="text" class="form-control" name="details[${detailIndex}].amount" value="${amount}"/></td>
+            <td><button type="button" class="btn btn-sm btn-danger" onclick="removeRow(this)">Eliminar</button></td>
+        `;
+
+        tbody.appendChild(tr);
+        detailIndex++;
+        amountInput.value = "";
+    }
+
+    function removeRow(btn) {
+        btn.closest("tr").remove();
+    }
+</script>
+</body>
+<div th:replace="~{common/footer :: footer}"></div>
+</html>

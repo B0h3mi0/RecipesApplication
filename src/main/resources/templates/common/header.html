@@ -1,38 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav th:fragment="header" class="navbar-custom navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/home}">RecetarioApp</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<div th:replace="~{common/header :: header}"></div>
+<nav th:fragment="header" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+        <a class="navbar-brand fw-semibold" th:href="@{/home}">RecetarioApp</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" th:href="@{/producto}" >Productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/login}">Iniciar Sesion</a>
-                    </li>
-                    <li sec:authorize="isAuthenticated()"class="nav-item">
-                        <a class="nav-link" th:href="@{/registro-usuario}">Crear registro de datos</a>
-                    </li>
-                </ul>
-                <div sec:authorize="isAuthenticated()" class="ms-auto d-flex align-items-center nav-item">
-                    <a th:inline="text" class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Hola <span th:remove="tag" sec:authentication="name"></span>!</a>
-                    <form th:action="@{/logout}" method="post" class="d-inline">
-                        <button type="submit" class="nav-link btn btn-link p-0 ">Cerrar sesión</button>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/recipes}">Recetas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/ingredients}">Ingredientes</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+
+                <li sec:authorize="!isAuthenticated()" class="nav-item">
+                    <a class="nav-link" th:href="@{/login}">Iniciar sesión</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item d-flex align-items-center">
+                    <span class="nav-link disabled" th:inline="text">Hola <span sec:authentication="name"></span></span>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="btn btn-link nav-link p-0">Cerrar sesión</button>
                     </form>
-                </div>
-            </div>
+                </li>
+
+            </ul>
+
         </div>
-    </nav>
-    
+    </div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
