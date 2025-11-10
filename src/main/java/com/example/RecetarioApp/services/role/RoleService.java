@@ -1,6 +1,6 @@
 package com.example.RecetarioApp.services.role;
 
-import com.example.RecetarioApp.domain.entities.RoleEntity;
+import com.example.RecetarioApp.domain.entities.auth.RoleEntity;
 
 import java.util.List;
 import java.util.Optional;

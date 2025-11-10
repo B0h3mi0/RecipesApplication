@@ -1,6 +1,6 @@
 package com.example.RecetarioApp.infrastructure.controllers;
 
-import com.example.RecetarioApp.domain.entities.RoleEntity;
+import com.example.RecetarioApp.domain.entities.auth.RoleEntity;
 import com.example.RecetarioApp.services.role.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

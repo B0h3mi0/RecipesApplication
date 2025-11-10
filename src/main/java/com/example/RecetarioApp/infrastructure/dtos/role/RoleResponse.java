@@ -1,6 +1,6 @@
 package com.example.RecetarioApp.infrastructure.dtos.role;
 
-import com.example.RecetarioApp.domain.entities.RoleEntity;
+import com.example.RecetarioApp.domain.entities.auth.RoleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,14 +1,10 @@
 package com.example.RecetarioApp.infrastructure.dtos.user;
 
-import com.example.RecetarioApp.domain.entities.RoleEntity;
-import com.example.RecetarioApp.infrastructure.dtos.detail_recipe.DetailRecipeRequest;
-import com.example.RecetarioApp.infrastructure.dtos.role.RoleResponse;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

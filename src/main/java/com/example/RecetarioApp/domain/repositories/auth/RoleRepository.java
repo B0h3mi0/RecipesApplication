@@ -1,6 +1,6 @@
-package com.example.RecetarioApp.domain.repositories;
+package com.example.RecetarioApp.domain.repositories.auth;
 
-import com.example.RecetarioApp.domain.entities.RoleEntity;
+import com.example.RecetarioApp.domain.entities.auth.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

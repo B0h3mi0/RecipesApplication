@@ -1,7 +1,7 @@
 package com.example.RecetarioApp.services.role;
 
-import com.example.RecetarioApp.domain.entities.RoleEntity;
-import com.example.RecetarioApp.domain.repositories.RoleRepository;
+import com.example.RecetarioApp.domain.entities.auth.RoleEntity;
+import com.example.RecetarioApp.domain.repositories.auth.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

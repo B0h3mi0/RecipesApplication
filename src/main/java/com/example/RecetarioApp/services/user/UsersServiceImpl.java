@@ -1,11 +1,10 @@
 package com.example.RecetarioApp.services.user;
 
-import com.example.RecetarioApp.domain.entities.RoleEntity;
-import com.example.RecetarioApp.domain.entities.UserEntity;
-import com.example.RecetarioApp.domain.exception.DatabaseTransactionException;
+import com.example.RecetarioApp.domain.entities.auth.RoleEntity;
+import com.example.RecetarioApp.domain.entities.auth.UserEntity;
 import com.example.RecetarioApp.domain.exception.ResourceNotFoundException;
-import com.example.RecetarioApp.domain.repositories.RoleRepository;
-import com.example.RecetarioApp.domain.repositories.UsersRepository;
+import com.example.RecetarioApp.domain.repositories.auth.RoleRepository;
+import com.example.RecetarioApp.domain.repositories.auth.UsersRepository;
 import com.example.RecetarioApp.infrastructure.dtos.user.UserResponse;
 import com.example.RecetarioApp.infrastructure.dtos.user.UsersRequest;
 import lombok.RequiredArgsConstructor;

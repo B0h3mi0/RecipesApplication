@@ -1,7 +1,7 @@
 package com.example.RecetarioApp.security;
 
-import com.example.RecetarioApp.domain.entities.UserEntity;
-import com.example.RecetarioApp.domain.repositories.UsersRepository;
+import com.example.RecetarioApp.domain.entities.auth.UserEntity;
+import com.example.RecetarioApp.domain.repositories.auth.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
