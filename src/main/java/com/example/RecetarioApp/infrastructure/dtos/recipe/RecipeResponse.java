@@ -19,6 +19,10 @@ public class RecipeResponse {
     private String preparationTime;
     private String description;
     private List<DetailRecipeResponse> details;
+    private String difficulty;
+    private String country;
+    private String type;
+    private String instruction;
 
 
     public static RecipeResponse fromEntity(RecipeEntity entity){
@@ -27,6 +31,10 @@ public class RecipeResponse {
                 .name(entity.getName())
                 .description(entity.getDescription())
                 .preparationTime(entity.getPreparationTime())
+                .instruction(entity.getInstruction())
+                .difficulty(entity.getDifficulty())
+                .country(entity.getCountry())
+                .type(entity.getType())
                 .details(entity.getDetails()
                         .stream()
                         .map(DetailRecipeResponse::fromEntity)

@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/recipes")
@@ -30,6 +32,8 @@ public class RecipeController {
     public String createRecipe(Model model) {
         model.addAttribute("recipe", new RecipeRequest());
         model.addAttribute("ingredients", ingredientService.findAll());
+        model.addAttribute("countries", List.of("Argentina", "Chile", "México", "España", "Perú"));
+        model.addAttribute("recipeTypes", List.of("Postre", "Entrada", "Plato Principal", "Bebida"));
         return "recipes/form";
     }
 
@@ -63,6 +67,9 @@ public class RecipeController {
     public String editRecipe(@PathVariable Long id, Model model) {
         model.addAttribute("recipe", recipeService.findById(id));
         model.addAttribute("ingredients", ingredientService.findAll());
+        model.addAttribute("countries", List.of("Argentina", "Chile", "México", "España", "Perú"));
+        model.addAttribute("recipeTypes", List.of("Postre", "Entrada", "Plato Principal", "Bebida"));
+
         return "recipes/form";
     }
 

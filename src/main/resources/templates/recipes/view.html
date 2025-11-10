@@ -26,6 +26,21 @@
             </p>
 
             <p>
+                <strong>País:</strong>
+                <span th:text="${recipe.country}"></span>
+            </p>
+
+            <p>
+                <strong>Tipo:</strong>
+                <span th:text="${recipe.type}"></span>
+            </p>
+
+            <p>
+                <strong>Dificultad:</strong>
+                <span th:text="${recipe.difficulty}"></span>
+            </p>
+
+            <p>
                 <strong>Descripción:</strong><br>
                 <span th:text="${recipe.description}"></span>
             </p>
@@ -35,10 +50,16 @@
                 <ul class="list-group mt-2">
                     <li th:each="ing : ${recipe.details}"
                         class="list-group-item"
-                        th:text="${ing.ingredientName} + '  ' + ${ing.amount}">
+                        th:text="${ing.ingredientName} + ' - ' + ${ing.amount}">
                     </li>
                 </ul>
             </div>
+
+            <div class="mt-4">
+                <strong>Instrucciones:</strong>
+                <p class="mt-2" th:text="${recipe.instruction}"></p>
+            </div>
+
         </div>
 
         <div class="card-footer d-flex justify-content-between">

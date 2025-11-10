@@ -42,7 +42,7 @@
             </td>
             <td>
           <span th:each="role, i : ${u.roles}"
-                th:text="${role.roleName}"
+                th:text="${role.name}"
                 th:append="${i.last} ? '' : ', '"></span>
             </td>
             <td>

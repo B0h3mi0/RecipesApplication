@@ -51,6 +51,10 @@ public class RecipeService implements IRecipeService{
                 .preparationTime(request.getPreparationTime())
                 .description(request.getDescription())
                 .createdAt(LocalDateTime.now())
+                .instruction(request.getInstruction())
+                .difficulty(request.getDifficulty())
+                .country(request.getCountry())
+                .type(request.getType())
                 .build();
         this.addDetailEntitiesFromRequest(toPersist,request);
         RecipeEntity persisted = repository.save(toPersist);
@@ -70,6 +74,10 @@ public class RecipeService implements IRecipeService{
         }
         toUpdate.setPreparationTime(request.getPreparationTime());
         toUpdate.setDescription(request.getDescription());
+        toUpdate.setCountry(request.getCountry());
+        toUpdate.setDifficulty(request.getDifficulty());
+        toUpdate.setType(request.getType());
+        toUpdate.setInstruction(request.getInstruction());
         toUpdate.getDetails().clear();
         this.addDetailEntitiesFromRequest(toUpdate,request);
         RecipeEntity updated = repository.save(toUpdate);

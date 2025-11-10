@@ -31,17 +31,17 @@ public class RecipeEntity {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetailRecipeEntity> details;
 
-    @ManyToOne
-    @JoinColumn(name = "DIFFICULTY_ID")
-    private DifficultyEntity difficulty;
+    @Column(name = "DIFFICULTY",nullable = false, length = 10)
+    private String difficulty;
 
-    @ManyToOne
-    @JoinColumn(name = "COUNTRY_ID")
-    private CountryEntity country;
+    @Column(name = "COUNTRY",nullable = false, length = 30)
+    private String country;
 
-    @ManyToOne
-    @JoinColumn(name = "RECIPE_TYPE_ID")
-    private RecipeTypeEntity type;
+    @Column(name = "TYPE",nullable = false, length = 30)
+    private String type;
+
+    @Column(name = "INSTRUCTION",nullable = false)
+    private String instruction;
 
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;

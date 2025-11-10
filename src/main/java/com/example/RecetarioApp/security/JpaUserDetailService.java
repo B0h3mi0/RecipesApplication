@@ -36,8 +36,6 @@ public class JpaUserDetailService implements UserDetailsService {
                 collect(Collectors.toList());
 
         log.info("Cantidad de roles: {}",authorities.size());
-        String pass= passwordEncoder.encode("1234");
-        log.info(pass);
 
         return new User(
                 user.getUsername(),

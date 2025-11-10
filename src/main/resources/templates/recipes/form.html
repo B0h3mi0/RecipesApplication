@@ -34,6 +34,48 @@
                     <div class="text-danger" th:errors="*{description}"></div>
                 </div>
 
+                <div class="mb-3">
+                    <label class="form-label">País</label>
+                    <select th:field="*{country}" class="form-select">
+                        <option value="" disabled selected>Seleccione un país</option>
+                        <option th:each="c : ${countries}"
+                                th:value="${c}"
+                                th:text="${c}">
+                        </option>
+                    </select>
+                    <div class="text-danger" th:errors="*{country}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tipo de receta</label>
+                    <select th:field="*{type}" class="form-select">
+                        <option value="" disabled selected>Seleccione un tipo</option>
+                        <option th:each="t : ${recipeTypes}"
+                                th:value="${t}"
+                                th:text="${t}">
+                        </option>
+                    </select>
+                    <div class="text-danger" th:errors="*{type}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Dificultad</label>
+                    <select th:field="*{difficulty}" class="form-select">
+                        <option value="" disabled selected>Seleccione dificultad</option>
+                        <option value="FACIL">FÁCIL</option>
+                        <option value="MEDIO">MEDIO</option>
+                        <option value="DIFICIL">DIFÍCIL</option>
+                    </select>
+                    <div class="text-danger" th:errors="*{difficulty}"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Instrucciones</label>
+                    <textarea th:field="*{instruction}" class="form-control" rows="4"
+                              placeholder="Describe cómo preparar la receta..."></textarea>
+                    <div class="text-danger" th:errors="*{instruction}"></div>
+                </div>
+
                 <h5 class="mt-4">Ingredientes</h5>
 
                 <div class="table-responsive">
