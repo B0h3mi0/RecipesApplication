@@ -17,10 +17,9 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto" sec:authorize="!isAuthenticated()">
-
-                <li sec:authorize="!isAuthenticated()" class="nav-item">
-                    <a class="nav-link" th:href="@{/buscar-receta}">Búsqueda de recetas</a>
+            <ul class="navbar-nav me-auto">
+                <li  class="nav-item">
+                    <a class="nav-link" th:href="@{/busca-receta}">Búsqueda de recetas</a>
                 </li>
             </ul>
             <ul class="navbar-nav me-auto" sec:authorize="isAuthenticated()">
@@ -36,11 +35,9 @@
             </ul>
 
             <ul class="navbar-nav ms-auto">
-                <!-- Solo se ve si NO está autenticado -->
                 <li sec:authorize="!isAuthenticated()" class="nav-item">
                     <a class="nav-link" th:href="@{/login}">Iniciar sesión</a>
                 </li>
-                <!-- Solo se ve si está autenticado -->
                 <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                         <span sec:authentication="name"></span>
