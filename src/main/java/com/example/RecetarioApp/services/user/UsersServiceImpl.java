@@ -1,10 +1,13 @@
 package com.example.RecetarioApp.services.user;
 
+import com.example.RecetarioApp.domain.entities.RoleEntity;
 import com.example.RecetarioApp.domain.entities.UserEntity;
 import com.example.RecetarioApp.domain.exception.DatabaseTransactionException;
 import com.example.RecetarioApp.domain.exception.ResourceNotFoundException;
+import com.example.RecetarioApp.domain.repositories.RoleRepository;
 import com.example.RecetarioApp.domain.repositories.UsersRepository;
-import com.example.RecetarioApp.infrastructure.dtos.user.UsersUpdateRequest;
+import com.example.RecetarioApp.infrastructure.dtos.user.UserResponse;
+import com.example.RecetarioApp.infrastructure.dtos.user.UsersRequest;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,59 +24,78 @@ public class UsersServiceImpl implements UsersService{
 
     private final UsersRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
     private static final Logger logger = LoggerFactory.getLogger(UsersServiceImpl.class);
 
     @Override
-    public List<UserEntity> getAllUsers(){
+    public List<UserResponse> getAllUsers(){
         logger.info("Buscando todos los users - metodo getAllUserss");
-        return userRepository.findAll();
+        return userRepository.findAll()
+                .stream()
+                .map(UserResponse::fromEntity)
+                .toList();
     }
 
     @Override
-    public Optional<UserEntity> getUsersById(Long id) {
+    public Optional<UserResponse> getUsersById(Long id) {
         logger.info("Buscando Users por ID {} - metodo getUsersById", id);
-        return userRepository.findById(id);
+        return userRepository.findById(id)
+                .map(UserResponse::fromEntity);
     }
 
     @Override
-    public UserEntity createUsers(UserEntity userToSave) {
-        logger.info("Creando Users con request: {} - Metodo saveUsers", userToSave);
-        try{
-            userToSave.setPassword(passwordEncoder.encode(userToSave.getPassword()));
-            UserEntity savedUsers = userRepository.save(userToSave);
-            logger.info("Users creado satisfactoriamente. Users ID: {} - metodo createUsers",savedUsers.getId());
-            return savedUsers;
-        } catch (Exception e) {
-            logger.error("Error creando Users - metodo createUsers");
-            throw new DatabaseTransactionException("Error creando Users", e);
+    public UserResponse createUsers(UsersRequest request) {
+        logger.info("Creating user with username: {}", request.getUsername());
+
+        userRepository.findByUsername(request.getUsername()).ifPresent(u -> {
+            throw new IllegalArgumentException("Username already exists: " + request.getUsername());
+        });
+
+        UserEntity toPersist = UserEntity.builder()
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .active(request.isActive())
+                .build();
+
+        if (request.getRoleId() != null && !request.getRoleId().isEmpty()) {
+            List<RoleEntity> roles = roleRepository.findAllById(request.getRoleId());
+            toPersist.setRoles(roles);
         }
+
+        UserEntity persisted = userRepository.save(toPersist);
+        logger.info("User created successfully with ID: {}", persisted.getId());
+
+        // Retornar DTO limpio
+        return UserResponse.fromEntity(persisted);
     }
 
     @Override
-    public UserEntity updateUsers(Long id, UsersUpdateRequest updateRequest) {
-        logger.info("Actualizando user con ID: {} y request: {} - metodo updateUsers", id, updateRequest);
+    public UserResponse updateUsers(Long id, UsersRequest updateRequest) {
+        logger.info("Updating user with ID: {} and request: {} - method updateUsers", id, updateRequest);
 
-        // Buscar el user en la base de datos
         UserEntity user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Users no encontrado con ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
 
-        // Actualizar solo los campos que vengan en el request
-        if (updateRequest.getUsername() != null) {
-            logger.info("Actualizando nomUsers to: {} - metodo updateUsers", updateRequest.getUsername());
+        if (updateRequest.getUsername() != null && !updateRequest.getUsername().isBlank()) {
+            logger.info("Updating username to: {} - method updateUsers", updateRequest.getUsername());
             user.setUsername(updateRequest.getUsername());
         }
-        if (updateRequest.getPassword() != null) {
-            logger.info("Actualizando apUsers : {} - metodo updateUsers", updateRequest.getPassword());
-            user.setPassword(passwordEncoder.encode(updateRequest.getPassword()));
 
+        if (updateRequest.getPassword() != null && !updateRequest.getPassword().isBlank()) {
+            logger.info("Updating password - method updateUsers");
+            user.setPassword(passwordEncoder.encode(updateRequest.getPassword()));
         }
 
-        // Guardar los cambios
-        logger.info("Guardando user - metodo updateUsers");
-        UserEntity updatedUsers = userRepository.save(user);
-        logger.info("Users updated successfully. Users ID: {}", updatedUsers.getId());
+        if (updateRequest.getRoleId() != null && !updateRequest.getRoleId().isEmpty()) {
+            logger.info("Updating user roles - method updateUsers");
+            List<RoleEntity> roles = roleRepository.findAllById(updateRequest.getRoleId());
+            user.setRoles(roles);
+        }
 
-        return updatedUsers;
+        UserEntity updatedUser = userRepository.save(user);
+        logger.info("User updated successfully. User ID: {}", updatedUser.getId());
+
+        return UserResponse.fromEntity(updatedUser);
     }
 
     @Override

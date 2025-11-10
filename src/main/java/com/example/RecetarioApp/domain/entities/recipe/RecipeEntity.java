@@ -36,7 +36,7 @@ public class RecipeEntity {
     private DifficultyEntity difficulty;
 
     @ManyToOne
-    @JoinColumn(name = "DIFFICULTY_ID")
+    @JoinColumn(name = "COUNTRY_ID")
     private CountryEntity country;
 
     @ManyToOne

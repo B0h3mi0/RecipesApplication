@@ -1,17 +1,13 @@
 package com.example.RecetarioApp.infrastructure.dtos.user;
 
 
-import com.example.RecetarioApp.domain.entities.RecipeEntity;
 import com.example.RecetarioApp.domain.entities.UserEntity;
-import com.example.RecetarioApp.infrastructure.dtos.detail_recipe.DetailRecipeResponse;
-import com.example.RecetarioApp.infrastructure.dtos.recipe.RecipeResponse;
 import com.example.RecetarioApp.infrastructure.dtos.role.RoleResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.management.relation.Role;
 import java.util.List;
 
 @Getter
@@ -30,7 +26,7 @@ public class UserResponse {
                 .id(entity.getId())
                 .username(entity.getUsername())
                 .active(entity.isActive())
-                .roles(entity.getRole()
+                .roles(entity.getRoles()
                         .stream()
                         .map(RoleResponse::fromEntity)
                         .toList())
