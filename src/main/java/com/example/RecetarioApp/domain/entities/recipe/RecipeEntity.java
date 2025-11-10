@@ -1,4 +1,4 @@
-package com.example.RecetarioApp.domain.entities;
+package com.example.RecetarioApp.domain.entities.recipe;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,7 +31,19 @@ public class RecipeEntity {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetailRecipeEntity> details;
 
-    @Column(name = "CREATE_AT")
+    @ManyToOne
+    @JoinColumn(name = "DIFFICULTY_ID")
+    private DifficultyEntity difficulty;
+
+    @ManyToOne
+    @JoinColumn(name = "DIFFICULTY_ID")
+    private CountryEntity country;
+
+    @ManyToOne
+    @JoinColumn(name = "RECIPE_TYPE_ID")
+    private RecipeTypeEntity type;
+
+    @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;
 
 }

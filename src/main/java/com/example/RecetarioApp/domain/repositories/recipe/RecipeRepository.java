@@ -1,6 +1,6 @@
-package com.example.RecetarioApp.domain.repositories;
+package com.example.RecetarioApp.domain.repositories.recipe;
 
-import com.example.RecetarioApp.domain.entities.RecipeEntity;
+import com.example.RecetarioApp.domain.entities.recipe.RecipeEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

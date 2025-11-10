@@ -1,0 +1,15 @@
+<div th:fragment="recetaCard(receta)">
+    <div class="card" style="width: 18rem;">
+        <img  class="card-img-top" alt="Imagen receta">
+<!--        <img th:src="@{${receta.imagen}}" class="card-img-top" alt="Imagen receta">-->
+        <div class="card-body">
+            <h5 class="card-title" th:text="${recipe.name}">Nombre receta</h5>
+            <p class="card-text">
+                <strong>Duración:</strong> <span th:text="${recipe.preparationTime}">30 min</span><br>
+<!--                <strong>Origen:</strong> <span th:text="${recipe.origen}">México</span><br>-->
+<!--                <strong>Dificultad:</strong> <span th:text="${recipe.dificultad}">Fácil</span>-->
+            </p>
+            <a th:href="@{/recipes/{id}(id=${recipe.id})}" class="btn btn-primary btn-sm">Ver receta</a>
+        </div>
+    </div>
+</div>

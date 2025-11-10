@@ -1,10 +1,10 @@
 package com.example.RecetarioApp.services.recipe;
 
-import com.example.RecetarioApp.domain.entities.DetailRecipeEntity;
-import com.example.RecetarioApp.domain.entities.IngredientEntity;
-import com.example.RecetarioApp.domain.entities.RecipeEntity;
-import com.example.RecetarioApp.domain.repositories.IngredientRepository;
-import com.example.RecetarioApp.domain.repositories.RecipeRepository;
+import com.example.RecetarioApp.domain.entities.recipe.DetailRecipeEntity;
+import com.example.RecetarioApp.domain.entities.recipe.IngredientEntity;
+import com.example.RecetarioApp.domain.entities.recipe.RecipeEntity;
+import com.example.RecetarioApp.domain.repositories.recipe.IngredientRepository;
+import com.example.RecetarioApp.domain.repositories.recipe.RecipeRepository;
 import com.example.RecetarioApp.infrastructure.dtos.recipe.RecipeRequest;
 import com.example.RecetarioApp.infrastructure.dtos.recipe.RecipeResponse;
 import lombok.RequiredArgsConstructor;
@@ -118,4 +118,27 @@ public class RecipeService implements IRecipeService{
     }
 
 
+    @Override
+    public List<RecipeResponse> findPopulars() {
+        log.info("Obtienendo lista de recetas mas populares");
+        List<RecipeEntity> recipes = ( List<RecipeEntity> ) repository.findAll();
+
+        log.info("Cantidad de recetas: {}",recipes.size());
+
+        return recipes.stream()
+                .map(RecipeResponse::fromEntity)
+                .toList();
+    }
+
+    @Override
+    public List<RecipeResponse> findRecent() {
+        log.info("Obtienendo lista de recetas creadas recientemente");
+        List<RecipeEntity> recipes = ( List<RecipeEntity> ) repository.findAll();
+
+        log.info("Cantidad de recetas: {}",recipes.size());
+
+        return recipes.stream()
+                .map(RecipeResponse::fromEntity)
+                .toList();
+    }
 }

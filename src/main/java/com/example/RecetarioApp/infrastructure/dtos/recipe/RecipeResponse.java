@@ -1,6 +1,6 @@
 package com.example.RecetarioApp.infrastructure.dtos.recipe;
 
-import com.example.RecetarioApp.domain.entities.RecipeEntity;
+import com.example.RecetarioApp.domain.entities.recipe.RecipeEntity;
 import com.example.RecetarioApp.infrastructure.dtos.detail_recipe.DetailRecipeResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

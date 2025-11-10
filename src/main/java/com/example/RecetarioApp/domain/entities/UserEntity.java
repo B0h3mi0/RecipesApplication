@@ -2,8 +2,13 @@ package com.example.RecetarioApp.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -12,8 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
-public class UserEntity {
+public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,5 +42,33 @@ public class UserEntity {
                     @UniqueConstraint(columnNames = {"USER_ID", "ROLE_ID"})
             }
     )
-    private List<RoleEntity> role;
+    private List<RoleEntity> roles;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.getRoles()
+                .stream().map(r ->
+                        new SimpleGrantedAuthority(r.getName())).
+                collect(Collectors.toList());
+
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.active;
+    }
 }

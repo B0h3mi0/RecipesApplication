@@ -1,4 +1,4 @@
-package com.example.RecetarioApp.domain.entities;
+package com.example.RecetarioApp.domain.entities.recipe;
 
 import jakarta.persistence.*;
 import lombok.*;

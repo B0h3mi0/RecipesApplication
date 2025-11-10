@@ -1,7 +1,7 @@
 package com.example.RecetarioApp.services.ingredient;
 
-import com.example.RecetarioApp.domain.entities.IngredientEntity;
-import com.example.RecetarioApp.domain.repositories.IngredientRepository;
+import com.example.RecetarioApp.domain.entities.recipe.IngredientEntity;
+import com.example.RecetarioApp.domain.repositories.recipe.IngredientRepository;
 import com.example.RecetarioApp.infrastructure.dtos.ingredient.IngredientRequest;
 import com.example.RecetarioApp.infrastructure.dtos.ingredient.IngredientResponse;
 import lombok.RequiredArgsConstructor;

@@ -24,4 +24,5 @@ public class RecipeRequest {
     private String description;
     @NotNull
     private List<DetailRecipeRequest> details = new ArrayList<>();
+
 }

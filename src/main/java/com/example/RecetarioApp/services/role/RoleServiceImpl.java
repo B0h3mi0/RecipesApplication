@@ -27,7 +27,6 @@ public class RoleServiceImpl implements RoleService {
         return roles;
     }
 
-
     @Override
     public Optional<RoleEntity> getRoleById(Long id) {
         logger.info("Buscando Role por ID {} - metodo getRoleById", id);

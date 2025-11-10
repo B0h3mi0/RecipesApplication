@@ -17,8 +17,8 @@ public class RoleEntity {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "ROLE_NAME")
-    private String roleName;
+    @Column(name = "NAME")
+    private String name;
 
     @Column(name = "DESCRIPTION")
     private String description;

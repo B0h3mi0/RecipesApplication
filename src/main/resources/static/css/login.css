@@ -2,7 +2,6 @@
    🎨 Estilos para Login
 ============================= */
 body {
-    background: linear-gradient(120deg, #ffb347, #ff7f50);
     font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
@@ -11,7 +10,6 @@ body {
     margin: 0;
 }
 
-/* Contenedor general centrado */
 .login-container {
     display: flex;
     justify-content: center;
@@ -19,7 +17,6 @@ body {
     width: 100%;
 }
 
-/* Caja principal */
 .login-box {
     background-color: #fff;
     padding: 2rem 2.5rem;
@@ -29,13 +26,11 @@ body {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Título */
 h2 {
     color: #4b2c20;
     font-weight: 600;
 }
 
-/* Campos del formulario */
 .form-label {
     font-weight: 500;
     color: #333;
@@ -48,7 +43,6 @@ h2 {
     font-size: 1rem;
 }
 
-/* Botón de login */
 .btn-login {
     background-color: #ff7f50;
     color: white;
@@ -65,7 +59,6 @@ h2 {
     transform: translateY(-2px);
 }
 
-/* Mensajes */
 .alert {
     border-radius: 10px;
     font-size: 0.95rem;
@@ -84,7 +77,6 @@ h2 {
     border: none;
 }
 
-/* Ajustes responsivos */
 @media (max-width: 576px) {
     .login-box {
         padding: 1.5rem;

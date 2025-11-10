@@ -1,6 +1,6 @@
 package com.example.RecetarioApp.infrastructure.controllers;
 
-import com.example.RecetarioApp.domain.entities.IngredientEntity;
+import com.example.RecetarioApp.domain.entities.recipe.IngredientEntity;
 import com.example.RecetarioApp.infrastructure.dtos.ingredient.IngredientRequest;
 import com.example.RecetarioApp.services.ingredient.IIngredientService;
 import jakarta.validation.Valid;
