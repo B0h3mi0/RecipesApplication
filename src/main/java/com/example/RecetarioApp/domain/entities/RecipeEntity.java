@@ -31,7 +31,7 @@ public class RecipeEntity {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetailRecipeEntity> details;
 
-    @Column(name = "CREATED_AT")
+    @Column(name = "CREATE_AT")
     private LocalDateTime createdAt;
 
 }
