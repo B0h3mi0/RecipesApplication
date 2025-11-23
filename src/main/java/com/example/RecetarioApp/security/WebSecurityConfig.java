@@ -16,8 +16,8 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home").permitAll()
-                        .requestMatchers("/", "/home").permitAll()
+                        .requestMatchers("/", "/home","/busca-receta").permitAll()
+                        .requestMatchers("/", "/home","/busca-receta").permitAll()
                         .requestMatchers("/css/**", "/images/**").permitAll()
                         .anyRequest().authenticated()
                 )

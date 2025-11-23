@@ -3,6 +3,9 @@ target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+### Conexiones y credenciales  ###
+.env
+wallet_ORACLE/
 
 ### STS ###
 .apt_generated
