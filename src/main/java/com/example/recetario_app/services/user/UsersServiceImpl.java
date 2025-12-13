@@ -54,9 +54,10 @@ public class UsersServiceImpl implements UsersService{
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .active(request.isActive())
+                .roles(List.of())
                 .build();
 
-        if (request.getRoleId() != null && !request.getRoleId().isEmpty()) {
+        if (request.getRoleId() != null) {
             List<RoleEntity> roles = roleRepository.findAllById(request.getRoleId());
             toPersist.setRoles(roles);
         }
@@ -64,7 +65,6 @@ public class UsersServiceImpl implements UsersService{
         UserEntity persisted = userRepository.save(toPersist);
         logger.info("User created successfully with ID: {}", persisted.getId());
 
-        // Retornar DTO limpio
         return UserResponse.fromEntity(persisted);
     }
 
@@ -75,17 +75,17 @@ public class UsersServiceImpl implements UsersService{
         UserEntity user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + id));
 
-        if (updateRequest.getUsername() != null && !updateRequest.getUsername().isBlank()) {
+        if (updateRequest.getUsername() != null) {
             logger.info("Updating username to: {} - method updateUsers", updateRequest.getUsername());
             user.setUsername(updateRequest.getUsername());
         }
 
-        if (updateRequest.getPassword() != null && !updateRequest.getPassword().isBlank()) {
+        if (updateRequest.getPassword() != null) {
             logger.info("Updating password - method updateUsers");
             user.setPassword(passwordEncoder.encode(updateRequest.getPassword()));
         }
 
-        if (updateRequest.getRoleId() != null && !updateRequest.getRoleId().isEmpty()) {
+        if (updateRequest.getRoleId() != null) {
             logger.info("Updating user roles - method updateUsers");
             List<RoleEntity> roles = roleRepository.findAllById(updateRequest.getRoleId());
             user.setRoles(roles);

@@ -21,7 +21,7 @@ public class UsersRequest {
     @Size(max = 60, message = "Password cannot exceed 60 characters")
     private String password;
 
-    private boolean active; // Expected values: "Y" or "N"
+    private boolean active;
 
     @NotNull
     private List<Long> roleId;

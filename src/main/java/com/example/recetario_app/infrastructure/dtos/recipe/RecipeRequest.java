@@ -14,11 +14,11 @@ import java.util.List;
 @Setter
 public class RecipeRequest {
     @NotEmpty
-    @Size(min = 2,max = 60)
+    @Size(min = 2, max = 60)
     private String name;
 
     @NotEmpty
-    @Size(min = 5,max = 50)
+    @Size(min = 5, max = 50)
     private String preparationTime;
 
     @NotEmpty
@@ -40,8 +40,7 @@ public class RecipeRequest {
     @NotEmpty
     @Size(min = 4)
     private String instruction;
-    
-    @NotNull
+
     private List<DetailRecipeRequest> details = new ArrayList<>();
 
 }
