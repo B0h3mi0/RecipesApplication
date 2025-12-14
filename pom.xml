@@ -100,7 +100,7 @@
 		<dependency>
 			<groupId>org.jacoco</groupId>
 			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.8.12</version>
+			<version>0.8.13</version>
 		</dependency>
 	</dependencies>
 
@@ -133,7 +133,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.12</version>
+				<version>0.8.13</version>
 				<executions>
 					<execution>
 						<id>default-prepare-agent</id>
@@ -174,7 +174,7 @@
 										<limit>
 											<counter>COMPLEXITY</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.8</minimum>
+											<minimum>0.9</minimum>
 										</limit>
 									</limits>
 								</rule>
